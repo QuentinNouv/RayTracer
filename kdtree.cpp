@@ -455,10 +455,10 @@ bool intersectKdTree(Scene *scene, KdTree *tree, Ray *ray, Intersection *interse
     			perror("intersectKdTree : unhandled object found");
     	}
     }
-    auto *stack = new std::stack<StackNode>();
     StackNode node;
     node.node = tree->root;
 
-    hasIntersection |= traverse(scene, tree, stack, node, ray, intersection);
+    hasIntersection |= traverse(scene, tree, nullptr, node, ray, intersection);
+    free(&node);
     return hasIntersection;
 }

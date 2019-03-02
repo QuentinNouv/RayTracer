@@ -9,8 +9,8 @@
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
-#define WIDTH  1440//800 3840
-#define HEIGHT 720// 600 2160
+#define WIDTH  400//800 3840
+#define HEIGHT 300// 600 2160
 
 Material mat_lib[] = {
 		/* nickel */

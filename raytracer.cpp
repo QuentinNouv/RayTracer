@@ -7,8 +7,8 @@
 #include <omp.h>
 
 
-#define MAX_DEPTH 10
-float ALIAS = 1.f;
+#define MAX_DEPTH 5
+float ALIAS = 2.f;
 
 /// acne_eps is a small constant used to prevent acne when computing
 /// intersection
@@ -291,7 +291,7 @@ void renderImage(Image *img, Scene *scene){
 		for (; cpt < 100; cpt += 5)
 			printf(" ");
 		printf("]\n");
-#pragma omp parallel for
+//#pragma omp parallel for
 		for (size_t i = 0; i < img->width; i++) {//200
 			color3 *ptr = getPixelPtr(img, i, j);
 			color3 pix = vec3(0.f);
