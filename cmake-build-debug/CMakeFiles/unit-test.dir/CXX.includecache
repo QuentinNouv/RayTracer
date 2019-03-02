@@ -1092,29 +1092,21 @@ glm/glm.hpp
 glm/gtc/constants.hpp
 -
 
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/expected.h
-
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/image.h
-defines.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
+/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.cpp
+string
+-
+fstream
+-
+parser.h
+/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
+vector
+-
+iostream
+-
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
 ../scene_types.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene_types.h
-
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/ray.h
-defines.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
-
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/raytracer.h
-defines.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
-image.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/image.h
-scene.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
-ray.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/ray.h
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
 defines.h
@@ -1127,26 +1119,4 @@ scene.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
 vector
 -
-
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/unit-test.cpp
-stdio.h
--
-string.h
--
-stdlib.h
--
-defines.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
-ray.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/ray.h
-scene.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
-raytracer.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/raytracer.h
-image.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/image.h
-parser/parser.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
-expected.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/expected.h
 

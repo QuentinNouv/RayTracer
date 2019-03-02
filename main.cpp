@@ -9,8 +9,8 @@
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
-#define WIDTH  800//800 3840
-#define HEIGHT 600// 600 2160
+#define WIDTH  1440//800 3840
+#define HEIGHT 720// 600 2160
 
 Material mat_lib[] = {
 		/* nickel */
@@ -442,25 +442,28 @@ Scene *initScene42(int i, int nb_step) {
 
 Scene *initScene6(){
 	Scene *scene = initScene();
-	setCamera(scene, point3(40, 10, 40), vec3(0, 1, 0), vec3(0, 1, 0), 90,
+	setCamera(scene, -point3(40, 5, -60), vec3(1, 0, 0), vec3(0, 1, 0), 90,
 			  (float)WIDTH / (float)HEIGHT);//TODO
-	setSkyColor(scene, color3(0.1f, 0.3f, 0.5f));
+	setSkyColor(scene, color3(0.05f));
 
 	Material mat;
-	mat.IOR = 1.3;
-	mat.roughness = 0.1;
-	mat.specularColor = color3(0.5f);
-	mat.diffuseColor = color3(.5f);
+	mat.IOR = 1.3f;
+	mat.roughness = 0.3f;
+	mat.specularColor = color3(0.1f);
+	mat.diffuseColor = color3(1.f);
 
 	std::vector<Face> *faces = facesParse(
 			const_cast<char *>("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/FALCON.obj"));
 
 	for(const auto &face : *faces){
-		addObject(scene, initTriangle(face.a, face.b, face.c, mat));
+		addObject(scene, initTriangle(face.a, face.b, face.c, mat_lib[9]));
 	}
 
-	addLight(scene, initLight(point3(40, 40, 40), color3(1, 1, 1)));
+	//addObject(scene, initPlane(vec3(0.1f, 0, 1.f), 500, mat));
+	//addObject(scene, initPlane(vec3(0.f, 1.f, 0.f), -500, mat));
 
+	addLight(scene, initLight(point3(-30, 40, 30), color3(1, 1, 1)));
+	addLight(scene, initLight(point3(30, 40, 30), color3(1, 1, 1)));
 	return scene;
 }
 

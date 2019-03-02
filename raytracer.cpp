@@ -4,14 +4,8 @@
 #include "scene_types.h"
 
 #include <iostream>
-#ifdef __APPLE__
-#include <OpenCL/cl.h>
-#include <tic.h>
 #include <omp.h>
 
-#else
-#include <CL/cl.h>
-#endif
 
 #define MAX_DEPTH 10
 float ALIAS = 1.f;
@@ -247,7 +241,6 @@ color3 trace_ray(Scene *scene, Ray *ray, KdTree *tree){
 		for (auto const &light : scene->lights) {
 			vecL = light->position - intersection.position;
 			l = normalize(vecL);
-			//l = vecL / length(vecL);
 			rayInit(&bounce, intersection.position + acne_eps * l, l, 0, length(vecL));
 			if (!intersectKdTree(scene, tree, &bounce, &ombre))// opti ne pas calculer solution
 			//if (!intersectScene(scene, &bounce, &ombre))// opti ne pas calculer solution

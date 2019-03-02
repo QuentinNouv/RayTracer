@@ -66,9 +66,6 @@ KdTree*  initKdTree(Scene *scene) {
 				tree->root->objects.push_back(i);
 				tree->inTree.push_back(i);
                 break;
-        	case PLANE:
-				tree->outOfTree.push_back(i);
-				break;
         	case TRIANGLE:
         		p1 = geom.triangle.a;
         		p2 = geom.triangle.b;
@@ -78,6 +75,9 @@ KdTree*  initKdTree(Scene *scene) {
 				tree->root->objects.push_back(i);
 				tree->inTree.push_back(i);
         		break;
+			case PLANE:
+				tree->outOfTree.push_back(i);
+				break;
             default:
                 break;
         }
@@ -93,8 +93,9 @@ KdTree*  initKdTree(Scene *scene) {
 }
 
 bool intersectPointAabb(vec3 point, vec3 aabbMin, vec3 aabbMax){
-	return point.x >= aabbMin.x && point.y >= aabbMin.y && point.z >= aabbMin.z &&
-			point.x <= aabbMax.x && point.y <= aabbMax.y && point.z <= aabbMax.z;
+	return point.x >= aabbMin.x && point.y >= aabbMin.y &&
+			point.z >= aabbMin.z && point.x <= aabbMax.x &&
+			point.y <= aabbMax.y && point.z <= aabbMax.z;
 }
 
 //from http://blog.nuclex-games.com/tutorials/collision-detection/static-sphere-vs-aabb/
@@ -124,7 +125,7 @@ inline bool axisTestX01(float a, float b, float fa, float fb, const glm::vec3 &v
 		max = p0;
 	}
 	rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
-	if (min > rad || max < -rad)
+	if (min >= rad || max <= -rad)
 		return false;
 	return true;
 }
@@ -141,7 +142,7 @@ inline bool axisTestX2(float a, float b, float fa, float fb, const glm::vec3 &v0
 		max = p0;
 	}
 	rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
-	if (min > rad || max < -rad)
+	if (min >= rad || max <= -rad)
 		return false;
 	return true;
 }
@@ -161,35 +162,16 @@ inline bool axisTestY02(float a, float b, float fa, float fb, const glm::vec3 &v
 		max = p0;
 	}
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.z;
-	if (min > rad || max < -rad)
+	if (min >= rad || max <= -rad)
 		return false;
 	return true;
 }
-
-inline bool axisTestY1(float a, float b, float fa, float fb, const glm::vec3 &v0,
-					   const glm::vec3 &v1, const glm::vec3 &boxhalfsize, float &rad, float &min,
-					   float &max, float &p0, float &p1) {
-	p0 = -a * v0.x + b * v0.z;
-	p1 = -a * v1.x + b * v1.z;
-	if (p0 < p1) {
-		min = p0;
-		max = p1;
-	} else {
-		min = p1;
-		max = p0;
-	}
-	rad = fa * boxhalfsize.x + fb * boxhalfsize.z;
-	if (min > rad || max < -rad)
-		return false;
-	return true;
-}
-
 /*======================== Z-tests ========================*/
 inline bool axisTestZ12(float a, float b, float fa, float fb, const glm::vec3 &v2,
 						const glm::vec3 &boxhalfsize, float &rad, float min, float max, float &p2) {
 	p2 = a * v2.x - b * v2.y;
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
-	if (min > rad || max < -rad)
+	if (min >= rad || max <= -rad)
 		return false;
 	return true;
 }
@@ -207,7 +189,7 @@ inline bool axisTestZ0(float a, float b, float fa, float fb, const glm::vec3 &v0
 		max = p0;
 	}
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
-	if (min > rad || max < -rad)
+	if (min >= rad || max <= -rad)
 		return false;
 	return true;
 }
@@ -238,8 +220,8 @@ inline bool planeBoxOverlap(glm::vec3 normal, glm::vec3 vert, glm::vec3 maxbox) 
 		}
 	}
 	if (glm::dot(normal, vmin) > 0.0f)
-		return true;
-	return glm::dot(normal, vmax) < 0.0f;
+		return false;
+	return glm::dot(normal, vmax) >= 0.0f;
 
 }
 
@@ -266,13 +248,13 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fez = fabsf(edge0.z);
 
 	if (!axisTestX01(edge0.z, edge0.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
-		return true;
+		return false;
 	}
 	if (!axisTestY02(edge0.z, edge0.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
-		return true;
+		return false;
 	}
 	if (!axisTestZ0(edge0.y, edge0.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
-		return true;
+		return false;
 	}
 
 	fex = fabsf(edge1.x);
@@ -280,13 +262,13 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fez = fabsf(edge1.z);
 
 	if (!axisTestX01(edge1.z, edge1.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
-		return true;
+		return false;
 	}
 	if (!axisTestY02(edge1.z, edge1.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
-		return true;
+		return false;
 	}
 	if (!axisTestZ0(edge1.y, edge1.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
-		return true;
+		return false;
 	}
 
 	fex = fabsf(edge2.x);
@@ -294,28 +276,28 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fez = fabsf(edge2.z);
 
 	if (!axisTestX2(edge2.z, edge2.y, fez, fey, v0, v1, halfSize, rad, min, max, p0, p1)) {
-		return true;
+		return false;
 	}
 	if (!axisTestY02(edge2.z, edge2.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
-		return true;
+		return false;
 	}
 	if (!axisTestZ12(edge2.y, edge2.x, fey, fex, v2, halfSize, rad, min, max, p2)) {
-		return true;
+		return false;
 	}
 
 	findMinMax(v0.x, v1.x, v2.x, min, max);
-	if (min > halfSize.x || max < -halfSize.x)
-		return true;
+	if (min >= halfSize.x || max <= -halfSize.x)
+		return false;
 
 	/* test in Y-direction */
 	findMinMax(v0.y, v1.y, v2.y, min, max);
-	if (min > halfSize.y || max < -halfSize.y)
-		return true;
+	if (min >= halfSize.y || max <= -halfSize.y)
+		return false;
 
 	/* test in Z-direction */
 	findMinMax(v0.z, v1.z, v2.z, min, max);
-	if (min > halfSize.z || max < -halfSize.z)
-		return true;
+	if (min >= halfSize.z || max <= -halfSize.z)
+		return false;
 
 	vec3 normal = cross(edge0, edge1);
 	return planeBoxOverlap(normal, v0, halfSize);
@@ -388,6 +370,7 @@ void subdivide(Scene *scene, KdTree *tree, KdTreeNode *node) {
 				perror("Erreur subdivide");
 		}
     }
+    //node->objects.clear();
     std::cout << "box " << node->depth << std::endl;
 	subdivide(scene, tree, node->left);
 	subdivide(scene, tree, node->right);
