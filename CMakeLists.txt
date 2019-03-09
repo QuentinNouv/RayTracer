@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.8.11)
 project(RayTracer)
 # -O3 -march=native
 if (APPLE)
-    set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include ")
+    set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include -O3")
 elseif(UNIX)
     set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -fopenmp -O3")
 endif ()

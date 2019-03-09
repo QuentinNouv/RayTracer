@@ -9,8 +9,8 @@
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
-#define WIDTH  400//800 3840
-#define HEIGHT 300// 600 2160
+#define WIDTH  1440//800 3840
+#define HEIGHT 720// 600 2160
 
 Material mat_lib[] = {
 		/* nickel */
@@ -440,7 +440,7 @@ Scene *initScene42(int i, int nb_step) {
 
 Scene *initScene6(){
 	Scene *scene = initScene();
-	setCamera(scene, 0.5f*point3(150, 150, 150), vec3(1, 0, 0), vec3(0, 0, 1), 90,
+	setCamera(scene, point3(150, 150, 150), vec3(1, 0, 0), vec3(0, 0, 1), 90,
 			  (float)WIDTH / (float)HEIGHT);//TODO
 	setSkyColor(scene, color3(0.05f));
 

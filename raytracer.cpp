@@ -248,6 +248,12 @@ color3 shade(vec3 n, vec3 v, vec3 l, color3 lc, Intersection *intersection){
 					distB /= normalDiv;
 					distC /= normalDiv;
 
+					float detier = 0.6666666f;
+
+					distA = detier - distA;
+					distB = detier - distB;
+					distC = detier - distC;
+
 					vec2 coordA = intersection->obj->mat.coord.coordA;
 					vec2 coordB = intersection->obj->mat.coord.coordB;
 					vec2 coordC = intersection->obj->mat.coord.coordC;

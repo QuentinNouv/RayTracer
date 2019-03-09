@@ -16,8 +16,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/image.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/image.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/kdtree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/kdtree.cpp.o" afterDir="false" />
@@ -26,52 +24,11 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/parser/parser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/parser/parser.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/raytracer.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/raytracer.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/scene.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mrt.dir/scene.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/image.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/image.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/kdtree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/kdtree.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/parser/parser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/parser/parser.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/raytracer.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/raytracer.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/scene.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/scene.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/unit-test.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/unit-test.dir/unit-test.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam001.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam002.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam003.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam004.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam005.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam006.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam007.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam009.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam010.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam011.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam012.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam013.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam014.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam015.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam016.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam017.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam018.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam019.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cam020.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/image0.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/image0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/image3.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/image3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/image4.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/image4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/mrt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mrt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/mrt.dSYM/Contents/Resources/DWARF/mrt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/mrt.dSYM/Contents/Resources/DWARF/mrt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/unit-test" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/unit-test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defines.h" beforeDir="false" afterPath="$PROJECT_DIR$/defines.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kdtree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/kdtree.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/parser/parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/parser/parser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raytracer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/raytracer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raytracer.h" beforeDir="false" afterPath="$PROJECT_DIR$/raytracer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit-test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/unit-test.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/raytracer.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1674">
-              <caret line="248" column="39" selection-start-line="248" selection-start-column="39" selection-end-line="248" selection-end-column="39" />
+            <state relative-caret-position="423">
+              <caret line="250" column="20" selection-start-line="250" selection-start-column="20" selection-end-line="254" selection-end-column="43" />
               <folding>
                 <element signature="e#1#19#0" expanded="true" />
               </folding>
@@ -118,14 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7512">
-              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-              <folding>
-                <element signature="e#33#53#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -142,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/falcon.png.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -150,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="101" selection-start-line="4" selection-start-column="101" selection-end-line="4" selection-end-column="101" />
+            <state>
+              <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -234,9 +188,9 @@
         <option value="$PROJECT_DIR$/parser/parser.h" />
         <option value="$PROJECT_DIR$/parser/parser.cpp" />
         <option value="$PROJECT_DIR$/raytracer.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/raytracer.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/raytracer.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -388,7 +342,7 @@
       <workItem from="1551805918318" duration="14916000" />
       <workItem from="1551878917629" duration="19024000" />
       <workItem from="1551995371798" duration="4452000" />
-      <workItem from="1552070153213" duration="11198000" />
+      <workItem from="1552070153213" duration="12371000" />
     </task>
     <task id="LOCAL-00001" summary="oui">
       <created>1551532333788</created>
@@ -404,14 +358,22 @@
       <option name="project" value="LOCAL" />
       <updated>1551538767534</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="oui">
+      <created>1552143088191</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552143088191</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279356000" />
+    <option name="totallyTimeSpent" value="280529000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1180" height="951" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17662565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -710,13 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="101" selection-start-line="4" selection-start-column="101" selection-end-line="4" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -744,28 +699,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/falcon.png.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/raytracer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1674">
-          <caret line="248" column="39" selection-start-line="248" selection-start-column="39" selection-end-line="248" selection-end-column="39" />
+        <state relative-caret-position="423">
+          <caret line="250" column="20" selection-start-line="250" selection-start-column="20" selection-end-line="254" selection-end-column="43" />
           <folding>
             <element signature="e#1#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7512">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding>
-            <element signature="e#33#53#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/falcon.png.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
