@@ -1197,7 +1197,7 @@ parser/parser.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
 stdio.h
 -
-string.h
+string
 -
 random
 -
@@ -1205,8 +1205,10 @@ glm/gtx/rotate_vector.hpp
 -
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
-../scene_types.h
-/Users/quentin/Documents/igtai/IGTAI-RayTracer/scene_types.h
+../defines.h
+/Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
+vector
+-
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/ray.h
 defines.h
@@ -1221,10 +1223,14 @@ scene.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
 ray.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/ray.h
+scene_types.h
+/Users/quentin/Documents/igtai/IGTAI-RayTracer/scene_types.h
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene.h
 defines.h
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/defines.h
+parser/parser.h
+/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/parser.h
 
 /Users/quentin/Documents/igtai/IGTAI-RayTracer/scene_types.h
 defines.h

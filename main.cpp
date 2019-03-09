@@ -5,7 +5,7 @@
 #include "raytracer.h"
 #include "parser/parser.h"
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
@@ -280,9 +280,6 @@ Scene *initScene5(int i, int nb_step) {
 	Scene *scene = initScene();
 	float coeff = 1.f - (i-nb_step)/(float)nb_step;
 	float angle = glm::pi<float>()*2.f*coeff;
-
-	setCamera(scene, rotateY(vec3(0,0.2,0)-point3(2, -1,5.5),angle), vec3(0, 0.2, 0), vec3(0, 3, 0), 60,
-			  (float)WIDTH / (float)HEIGHT);
 	setSkyColor(scene, color3(0.1f, 0.3f, 0.5f));
 	Material mat;
 	mat.IOR = 1.3;
@@ -294,12 +291,6 @@ Scene *initScene5(int i, int nb_step) {
 
 	mat.diffuseColor = color3(1.f, 0.1f, 0.2f);
 	// addObject(scene, initSphere(point3(1, 0, 0), .25, mat));
-
-	point3 a = point3(0.4,0.8,0.7);
-	point3 b = point3(0.8,0.1,0.1);
-	point3 c = point3(0.2,0.5,-0.1);
-	point3 d = point3(-0.1,0.2,0.3);
-
 	Material faces[4];
 
 	faces[0].IOR = 1.1022;
@@ -322,6 +313,13 @@ Scene *initScene5(int i, int nb_step) {
 	faces[3].specularColor = color3(0.5f);
 	faces[3].diffuseColor = color3(7.0f, 7.0f, 7.0f);
 
+	setCamera(scene, rotateY(vec3(0,0.2,0)-point3(2, -1,5.5),angle), vec3(0, 0.2, 0), vec3(0, 3, 0), 60,
+			  (float)WIDTH / (float)HEIGHT);
+
+	point3 a = point3(0.4,0.8,0.7);
+	point3 b = point3(0.8,0.1,0.1);
+	point3 c = point3(0.2,0.5,-0.1);
+	point3 d = point3(-0.1,0.2,0.3);
 
 	addObject(scene, initTriangle( a, b, c, faces[0]));
 	addObject(scene, initTriangle( a, d, b, faces[1]));
@@ -442,28 +440,38 @@ Scene *initScene42(int i, int nb_step) {
 
 Scene *initScene6(){
 	Scene *scene = initScene();
-	setCamera(scene, -point3(40, 5, -60), vec3(1, 0, 0), vec3(0, 1, 0), 90,
+	setCamera(scene, 0.5f*point3(150, 150, 150), vec3(1, 0, 0), vec3(0, 0, 1), 90,
 			  (float)WIDTH / (float)HEIGHT);//TODO
 	setSkyColor(scene, color3(0.05f));
 
-	Material mat;
-	mat.IOR = 1.3f;
-	mat.roughness = 0.3f;
-	mat.specularColor = color3(0.1f);
-	mat.diffuseColor = color3(1.f);
+	Material mat = mat_lib[9];
+	mat.hasTexture = true;
+	//mat.IOR = 1.3f;
+	//mat.roughness = 0.3f;
+	//mat.specularColor = color3(0.1f);
+	//mat.diffuseColor = color3(1.f);
 
-	std::vector<Face> *faces = facesParse(
-			const_cast<char *>("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/FALCON.obj"));
+	auto model = objParse("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/starwars2_lowpoly/starwars2_lowpoly.obj",
+			"/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/starwars2_lowpoly/starwars2_lowpoly.ppm");
+	// TODO free les vectors bidule ici
 
+	std::vector<Face> *faces = model->faces;
+	// facesParse(
+	//		const_cast<char *>("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/FALCON.obj"));
+	mat.model = model;
+	mat.type = TRIANGLE;
 	for(const auto &face : *faces){
-		addObject(scene, initTriangle(face.a, face.b, face.c, mat_lib[9]));
+		mat.coord = {face.a.texture, face.b.texture, face.c.texture};
+		addObject(scene, initTriangle(face.a.coord, face.b.coord, face.c.coord, mat));
 	}
 
 	//addObject(scene, initPlane(vec3(0.1f, 0, 1.f), 500, mat));
 	//addObject(scene, initPlane(vec3(0.f, 1.f, 0.f), -500, mat));
 
-	addLight(scene, initLight(point3(-30, 40, 30), color3(1, 1, 1)));
+	addLight(scene, initLight(point3(150, 150, 150), color3(1.5, 1.5, 1.5)));
+	addLight(scene, initLight(-point3(-30, 40, 30), color3(1, 1, 1)));
 	addLight(scene, initLight(point3(30, 40, 30), color3(1, 1, 1)));
+	addLight(scene, initLight(-point3(30, 40, 30), color3(1, 1, 1)));
 	return scene;
 }
 

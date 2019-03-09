@@ -1,8 +1,11 @@
 cmake_minimum_required (VERSION 2.8.11)
 project(RayTracer)
 # -O3 -march=native
-set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include -O3")
-
+if (APPLE)
+    set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include ")
+elseif(UNIX)
+    set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -g -fopenmp -O3")
+endif ()
 set(mrt_SRCS
   image.cpp
   kdtree.cpp
@@ -13,7 +16,9 @@ set(mrt_SRCS
         parser/parser.cpp parser/parser.h)
 
 add_executable (mrt ${mrt_SRCS})
-target_link_libraries(mrt PUBLIC "/usr/local/opt/libomp/lib/libomp.dylib")
+if(APPLE)
+    target_link_libraries(mrt PUBLIC "/usr/local/opt/libomp/lib/libomp.dylib")
+endif()
 target_include_directories (mrt PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/glm-master/ ${CMAKE_CURRENT_SOURCE_DIR}/lodepng-master/ )
 
 
@@ -28,7 +33,9 @@ set(unit_test_SRCS
 
 add_executable (unit-test ${unit_test_SRCS})
 target_include_directories (unit-test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/glm-master/ ${CMAKE_CURRENT_SOURCE_DIR}/lodepng-master/ )
-target_link_libraries(unit-test PUBLIC "/usr/local/opt/libomp/lib/libomp.dylib")
+if(APPLE)
+    target_link_libraries(unit-test PUBLIC "/usr/local/opt/libomp/lib/libomp.dylib")
+endif()
 
 set(make_test_SRCS
   image.cpp

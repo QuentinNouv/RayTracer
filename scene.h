@@ -2,6 +2,7 @@
 #define __SCENE_H__
 
 #include "defines.h"
+#include "parser/parser.h"
 
 // SCENE
 typedef struct scene_s Scene;
@@ -9,14 +10,24 @@ typedef struct object_s Object;
 typedef struct light_s Light;
 typedef struct camera_s Camera;
 
+enum Etype {SPHERE=1, PLANE, TRIANGLE};
+
+typedef struct {
+	vec2 coordA;
+	vec2 coordB;
+	vec2 coordC;
+} triangleTexture;
+
 typedef struct material_s {
 	float IOR;	//! Index of refraction (for dielectric)
 	float roughness; //! 0.001 - 0.01 : very smooth finish with slight imperfections. 0.1 : relatively rough. 0.3-0.7 extremely rough
 	color3 specularColor;	//! Specular "albedo"
-	color3 diffuseColor;	//! Base color
+	color3 diffuseColor;//! Base color
+	Etype type;
+	bool hasTexture = false;
+	Model *model = nullptr;
+	triangleTexture coord;
 } Material;
-
-enum Etype {SPHERE=1, PLANE, TRIANGLE};
 
 
 //! create a new sphere structure

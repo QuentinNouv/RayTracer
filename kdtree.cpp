@@ -371,7 +371,7 @@ void subdivide(Scene *scene, KdTree *tree, KdTreeNode *node) {
 		}
     }
     //node->objects.clear();
-    std::cout << "box " << node->depth << std::endl;
+    //std::cout << "box " << node->depth << std::endl;
 	subdivide(scene, tree, node->left);
 	subdivide(scene, tree, node->right);
 
@@ -412,7 +412,13 @@ bool objIntersect(Ray *ray, Intersection *intersection, Object *object){
 	return false;
 }
 
-bool traverse(Scene * scene, KdTree * tree, std::stack<StackNode> *stack, StackNode currentNode, Ray * ray, Intersection *intersection) {
+inline void swap(float &a, float &b){
+	float buffer = a;
+	a = b;
+	b = buffer;
+}
+
+bool traverse(Scene * scene, KdTree * tree,StackNode currentNode, Ray * ray, Intersection *intersection) {
 	bool intersect = false;
 	if (currentNode.node->leaf){
 		for (auto const &index : currentNode.node->objects){
@@ -420,26 +426,84 @@ bool traverse(Scene * scene, KdTree * tree, std::stack<StackNode> *stack, StackN
 			intersect |= objIntersect(ray, intersection, obj);
 		}
 	} else {
+		Ray t1, t2;
+		bool intersectT1, intersectT2;
+		StackNode node;
+/*
+		rayInit(&t1, ray->orig, ray->dir, currentNode.tmin, currentNode.tmax);
+		rayInit(&t2, ray->orig, ray->dir, currentNode.tmin, currentNode.tmax);
+		intersectT1 = intersectAabb(&t1, currentNode.node->left->min, currentNode.node->left->max);
+		intersectT2 = intersectAabb(&t2, currentNode.node->right->min, currentNode.node->right->max);
+		if (t1.tmin > t1.tmax) swap(t1.tmin, t1.tmax);
+		if (t2.tmin > t2.tmax) swap(t2.tmin, t2.tmax);
+		if (intersectT1 && intersectT2){
+			if (t1.tmin < t2.tmin){
+				node.node = currentNode.node->left;
+				node.tmin = t1.tmin;
+				node.tmax = t1.tmax;
+				intersect |= traverse(scene, tree, node, ray, intersection);
+				if (intersect){
+					if (ray->tmax > t2.tmin){
+						node.node = currentNode.node->right;
+						node.tmin = t2.tmin;
+						node.tmax = t2.tmax;
+						intersect |= traverse(scene, tree, node, ray, intersection);
+					}
+				} else {
+					node.node = currentNode.node->right;
+					node.tmin = t2.tmin;
+					node.tmax = t2.tmax;
+					intersect |= traverse(scene, tree, node, ray, intersection);
+				}
+			} else {
+				node.node = currentNode.node->right;
+				node.tmin = t2.tmin;
+				node.tmax = t2.tmax;
+				intersect |= traverse(scene, tree, node, ray, intersection);
+				if (intersect){
+					if (ray->tmax > t1.tmin){
+						node.node = currentNode.node->left;
+						node.tmin = t1.tmin;
+						node.tmax = t1.tmax;
+						intersect |= traverse(scene, tree, node, ray, intersection);
+					}
+				} else {
+					node.node = currentNode.node->left;
+					node.tmin = t1.tmin;
+					node.tmax = t1.tmax;
+					intersect |= traverse(scene, tree, node, ray, intersection);
+				}
+			}
+		} else if(intersectT1){
+			node.node = currentNode.node->left;
+			node.tmin = t1.tmin;
+			node.tmax = t1.tmax;
+			intersect |= traverse(scene, tree, node, ray, intersection);
+		} else if (intersectT2){
+			node.node = currentNode.node->right;
+			node.tmin = t2.tmin;
+			node.tmax = t2.tmax;
+			intersect |= traverse(scene, tree, node, ray, intersection);
+		}/*Devrais être plus rapide mais ne l'est pas ???????????*/
+
+
 		Ray travers;
 		rayInit(&travers, ray->orig, ray->dir, currentNode.tmin, currentNode.tmax);
 		if (intersectAabb(&travers, currentNode.node->left->min, currentNode.node->left->max)){
-			StackNode node;
 			node.node = currentNode.node->left;
 			node.tmin = travers.tmin;
 			node.tmax = travers.tmax;
-			intersect |= traverse(scene, tree, stack, node, ray, intersection);
+			intersect |= traverse(scene, tree, node, ray, intersection);
 		}
 		rayInit(&travers, ray->orig, ray->dir, currentNode.tmin, currentNode.tmax);
 		if (intersectAabb(&travers, currentNode.node->right->min, currentNode.node->right->max)){
-			StackNode node;
 			node.node = currentNode.node->right;
 			node.tmin = travers.tmin;
 			node.tmax = travers.tmax;
-			intersect |= traverse(scene, tree, stack, node, ray, intersection);
-		}
+			intersect |= traverse(scene, tree, node, ray, intersection);
+		}/**/
 	}
 	return intersect;
-	//! \todo traverse kdtree to find intersection
 }
 
 bool intersectKdTree(Scene *scene, KdTree *tree, Ray *ray, Intersection *intersection) {
@@ -458,7 +522,7 @@ bool intersectKdTree(Scene *scene, KdTree *tree, Ray *ray, Intersection *interse
     StackNode node;
     node.node = tree->root;
 
-    hasIntersection |= traverse(scene, tree, nullptr, node, ray, intersection);
-    free(&node);
+    hasIntersection |= traverse(scene, tree, node, ray, intersection);
+    //free(&node);
     return hasIntersection;
 }

@@ -326,6 +326,7 @@ CMakeFiles/unit-test.dir/kdtree.cpp.o: ../defines.h
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../image.h
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../kdtree.cpp
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../kdtree.h
+CMakeFiles/unit-test.dir/kdtree.cpp.o: ../parser/parser.h
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../ray.h
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../raytracer.h
 CMakeFiles/unit-test.dir/kdtree.cpp.o: ../scene.h
@@ -495,8 +496,6 @@ CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../glm-master/glm/vector_relationa
 CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../defines.h
 CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../parser/parser.cpp
 CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../parser/parser.h
-CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../scene.h
-CMakeFiles/unit-test.dir/parser/parser.cpp.o: ../scene_types.h
 
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../glm-master/glm/./detail/type_mat2x2.hpp
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../glm-master/glm/./detail/type_mat2x2.inl
@@ -659,6 +658,7 @@ CMakeFiles/unit-test.dir/raytracer.cpp.o: ../glm-master/glm/vector_relational.hp
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../defines.h
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../image.h
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../kdtree.h
+CMakeFiles/unit-test.dir/raytracer.cpp.o: ../parser/parser.h
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../ray.h
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../raytracer.cpp
 CMakeFiles/unit-test.dir/raytracer.cpp.o: ../raytracer.h
@@ -824,6 +824,7 @@ CMakeFiles/unit-test.dir/scene.cpp.o: ../glm-master/glm/vec3.hpp
 CMakeFiles/unit-test.dir/scene.cpp.o: ../glm-master/glm/vec4.hpp
 CMakeFiles/unit-test.dir/scene.cpp.o: ../glm-master/glm/vector_relational.hpp
 CMakeFiles/unit-test.dir/scene.cpp.o: ../defines.h
+CMakeFiles/unit-test.dir/scene.cpp.o: ../parser/parser.h
 CMakeFiles/unit-test.dir/scene.cpp.o: ../scene.cpp
 CMakeFiles/unit-test.dir/scene.cpp.o: ../scene.h
 CMakeFiles/unit-test.dir/scene.cpp.o: ../scene_types.h
@@ -993,6 +994,5 @@ CMakeFiles/unit-test.dir/unit-test.cpp.o: ../parser/parser.h
 CMakeFiles/unit-test.dir/unit-test.cpp.o: ../ray.h
 CMakeFiles/unit-test.dir/unit-test.cpp.o: ../raytracer.h
 CMakeFiles/unit-test.dir/unit-test.cpp.o: ../scene.h
-CMakeFiles/unit-test.dir/unit-test.cpp.o: ../scene_types.h
 CMakeFiles/unit-test.dir/unit-test.cpp.o: ../unit-test.cpp
 

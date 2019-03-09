@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <string>
 #include "defines.h"
 #include "ray.h"
 #include "scene.h"
@@ -94,7 +95,10 @@ int main(void){
   vec2 test = max(vec2(1.f,0.f), vec2(0.f,1.f));
   printf("%f %f", test.x, test.y);
 
-  auto test2 = facesParse(const_cast<char *>("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/FALCON.obj"));
-
+  auto test2 = objParse("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/FALCON.obj",
+		  "/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/falcon.ppm");
+  for (const auto &face : *test2->faces) {
+      printf("%f %f\n", face.a.texture.x, face.a.texture.y);
+  }
   return 0;
 }
