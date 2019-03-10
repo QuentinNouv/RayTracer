@@ -8,6 +8,7 @@
 #include "parser/parser.h"
 #include <stdio.h>
 #include <string>
+#include <cstring>
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
