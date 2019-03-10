@@ -7,6 +7,7 @@
 
 #include "../defines.h"
 #include <vector>
+#include <string>
 
 typedef struct {vec3 coord; vec2 texture;} Sommet;
 typedef struct {Sommet a; Sommet b; Sommet c;} Face;
