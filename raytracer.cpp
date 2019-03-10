@@ -288,7 +288,7 @@ color3 shade(vec3 n, vec3 v, vec3 l, color3 lc, Intersection *intersection){
 					matTexture.IOR = intersection->obj->mat.IOR;
 					matTexture.roughness = intersection->obj->mat.roughness;
 
-					point3 inter = rotateY(intersection->position, 90.f);
+					point3 inter = rotateY(intersection->position, degreesToRadians(-70.f));
 
 					float mu = 0.5f + atan2(inter.z, inter.x)/(2.f*glm::pi<float>());
 					//float as = asin(inter.y/intersection->obj->geom.sphere.radius);

@@ -21,6 +21,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 
+#define degreesToRadians(x) x*(3.141592f/180.0f)
+
 using namespace glm;
 
 typedef vec3 point3;

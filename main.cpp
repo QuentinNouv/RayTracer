@@ -11,8 +11,6 @@
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
-#define degreesToRadians(x) x*(3.141592f/180.0f)
-
 #define WIDTH  400//800 3840
 #define HEIGHT 300// 600 2160
 
