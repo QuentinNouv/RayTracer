@@ -1,7 +1,13 @@
+#ifndef GLM_ENABLE_EXPERIMENTAL
+#define GLM_ENABLE_EXPERIMENTAL
+#endif
+
 
 #include "image.h"
 #include "kdtree.h"
 #include "scene_types.h"
+#include <glm/gtx/rotate_vector.hpp>
+
 
 #include <iostream>
 #include <omp.h>
@@ -92,6 +98,7 @@ bool intersectTriangle(Ray *ray, Intersection *intersection, Object *obj) {
 
 	float t = glm::dot(ac,qvec)/det;
 
+
 	if(t<ray->tmin || t>ray->tmax) return false;
 
 	ray->tmax = t;
@@ -109,6 +116,7 @@ bool intersectScene(const Scene *scene, Ray *ray, Intersection *intersection){
 			case PLANE:
 				hasIntersection |= intersectPlane(ray, intersection, object);
 				break;
+			case KDFREE_SPHERE:
 			case SPHERE:
 				hasIntersection |= intersectSphere(ray, intersection, object);
 				break;
@@ -218,8 +226,8 @@ color3 shade(vec3 n, vec3 v, vec3 l, color3 lc, Intersection *intersection){
 	//if (cosO <= 0.f) return vec3(0.f);
 	const auto h = normalize(v+l);
 	const float LdotH = dot(l, h),
-				NdotH = dot(n, h),
-				VdotH = dot(v, h),
+				VdotH = dot(v, h);
+	float 		NdotH = dot(n, h),
 				LdotN = dot(l, n),
 				VdotN = dot(v, n);
 
@@ -227,21 +235,22 @@ color3 shade(vec3 n, vec3 v, vec3 l, color3 lc, Intersection *intersection){
 
 	if (intersection->obj->mat.hasTexture){
 		switch (intersection->obj->mat.type){
-			case TRIANGLE:{
+			case TRIANGLE:
+				{
 					Material matTexture;
 					matTexture.IOR = intersection->obj->mat.IOR;
 					matTexture.roughness = intersection->obj->mat.roughness;
 
-					float pu = (intersection->obj->mat.coord.coordA.x + intersection->obj->mat.coord.coordB.x + intersection->obj->mat.coord.coordC.x)/3.f;
-					float pv = (intersection->obj->mat.coord.coordA.y + intersection->obj->mat.coord.coordB.y + intersection->obj->mat.coord.coordC.y)/3.f;
+					//float pu = (intersection->obj->mat.coord.coordA.x + intersection->obj->mat.coord.coordB.x + intersection->obj->mat.coord.coordC.x)/3.f;
+					//float pv = (intersection->obj->mat.coord.coordA.y + intersection->obj->mat.coord.coordB.y + intersection->obj->mat.coord.coordC.y)/3.f;
 
 					point3 inter = intersection->position;
 					point3 A = intersection->obj->geom.triangle.a;
 					point3 B = intersection->obj->geom.triangle.b;
 					point3 C = intersection->obj->geom.triangle.c;
-					float distA = static_cast<float>(pow(inter.x - A.x, 2) + pow(inter.y - A.y, 2) + pow(inter.z - A.z, 2));
-					float distB = static_cast<float>(pow(inter.x - B.x, 2) + pow(inter.y - B.y, 2) + pow(inter.z - B.z, 2));
-					float distC = static_cast<float>(pow(inter.x - C.x, 2) + pow(inter.y - C.y, 2) + pow(inter.z - C.z, 2));
+					auto distA = static_cast<float>(pow(inter.x - A.x, 2) + pow(inter.y - A.y, 2) + pow(inter.z - A.z, 2));
+					auto distB = static_cast<float>(pow(inter.x - B.x, 2) + pow(inter.y - B.y, 2) + pow(inter.z - B.z, 2));
+					auto distC = static_cast<float>(pow(inter.x - C.x, 2) + pow(inter.y - C.y, 2) + pow(inter.z - C.z, 2));
 					float normalDiv = (distA + distB + distC);
 
 					distA /= normalDiv;
@@ -271,8 +280,39 @@ color3 shade(vec3 n, vec3 v, vec3 l, color3 lc, Intersection *intersection){
 					matTexture.diffuseColor = color;
 					matTexture.specularColor = color;
 					bsdf = RDM_bsdf(LdotH, NdotH, VdotH, LdotN, VdotN, &matTexture);
-					break;
-			}
+				}
+				break;
+			case KDFREE_SPHERE:
+				{
+					Material matTexture;
+					matTexture.IOR = intersection->obj->mat.IOR;
+					matTexture.roughness = intersection->obj->mat.roughness;
+
+					point3 inter = rotateY(intersection->position, 90.f);
+
+					float mu = 0.5f + atan2(inter.z, inter.x)/(2.f*glm::pi<float>());
+					//float as = asin(inter.y/intersection->obj->geom.sphere.radius);
+					float mv = 0.5f - asin(inter.y/intersection->obj->geom.sphere.radius)/glm::pi<float>();
+
+					unsigned height = intersection->obj->mat.model->height;
+					unsigned width = intersection->obj->mat.model->width;
+
+					unsigned s = (int) round(mu * (width*1))%width;
+					unsigned t = (int) round(mv * (height*1))%height;
+
+					color3 color = intersection->obj->mat.model->textures->at(t)->at(s);
+
+					matTexture.specularColor = color;
+					matTexture.diffuseColor = color;
+
+					NdotH = -NdotH;
+					LdotN = -LdotN;
+					VdotN = -VdotN;
+
+
+					bsdf = RDM_bsdf(LdotH, NdotH, VdotH, LdotN, VdotN, &matTexture);
+				}
+				break;
 			default:
 				bsdf = RDM_bsdf(LdotH, NdotH, VdotH, LdotN, VdotN, &intersection->obj->mat);
 				break;

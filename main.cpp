@@ -1,4 +1,6 @@
+#ifndef GLM_ENABLE_EXPERIMENTAL
 #define GLM_ENABLE_EXPERIMENTAL
+#endif
 
 #include "defines.h"
 #include "image.h"
@@ -9,8 +11,10 @@
 #include <random>
 #include <glm/gtx/rotate_vector.hpp>
 
-#define WIDTH  1440//800 3840
-#define HEIGHT 720// 600 2160
+#define degreesToRadians(x) x*(3.141592f/180.0f)
+
+#define WIDTH  400//800 3840
+#define HEIGHT 300// 600 2160
 
 Material mat_lib[] = {
 		/* nickel */
@@ -440,7 +444,8 @@ Scene *initScene42(int i, int nb_step) {
 
 Scene *initScene6(){
 	Scene *scene = initScene();
-	setCamera(scene, point3(150, 150, 150), vec3(1, 0, 0), vec3(0, 0, 1), 90,
+	point3 pos = rotateY(rotateX(point3(120.f), degreesToRadians(60.f)), degreesToRadians(30.f));
+	setCamera(scene, pos, vec3(1, 0, 0), vec3(0, 0, 1), 90,
 			  (float)WIDTH / (float)HEIGHT);//TODO
 	setSkyColor(scene, color3(0.05f));
 
@@ -465,13 +470,24 @@ Scene *initScene6(){
 		addObject(scene, initTriangle(face.a.coord, face.b.coord, face.c.coord, mat));
 	}
 
+	auto sphere = new Model();
+
+	mat.IOR = 1.7f;
+	mat.roughness = 0.1f;
+	mat.hasTexture = true;
+	mat.type = KDFREE_SPHERE;
+	mat.model = sphere;
+
+	mat.model->textures = ppmTab("/Users/quentin/Documents/igtai/IGTAI-RayTracer/parser/skybox.ppm", mat.model->width,mat.model->height);
+
+	addObject(scene, initKdFree_Sphere(vec3(0.f), 300.f, mat));
+
 	//addObject(scene, initPlane(vec3(0.1f, 0, 1.f), 500, mat));
 	//addObject(scene, initPlane(vec3(0.f, 1.f, 0.f), -500, mat));
-
-	addLight(scene, initLight(point3(150, 150, 150), color3(1.5, 1.5, 1.5)));
-	addLight(scene, initLight(-point3(-30, 40, 30), color3(1, 1, 1)));
-	addLight(scene, initLight(point3(30, 40, 30), color3(1, 1, 1)));
-	addLight(scene, initLight(-point3(30, 40, 30), color3(1, 1, 1)));
+	addLight(scene, initLight(pos, color3(1.5, 1.5, 1.5)));
+	//addLight(scene, initLight(-point3(-30, 40, 30), color3(1, 1, 1)));
+	//addLight(scene, initLight(point3(30, 40, 30), color3(1, 1, 1)));
+	//addLight(scene, initLight(-point3(30, 40, 30), color3(1, 1, 1)));
 	return scene;
 }
 

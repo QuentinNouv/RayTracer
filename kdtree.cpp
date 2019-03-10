@@ -78,6 +78,9 @@ KdTree*  initKdTree(Scene *scene) {
 			case PLANE:
 				tree->outOfTree.push_back(i);
 				break;
+			case KDFREE_SPHERE:
+				tree->outOfTree.push_back(i);
+				break;
             default:
                 break;
         }
@@ -426,8 +429,8 @@ bool traverse(Scene * scene, KdTree * tree,StackNode currentNode, Ray * ray, Int
 			intersect |= objIntersect(ray, intersection, obj);
 		}
 	} else {
-		Ray t1, t2;
-		bool intersectT1, intersectT2;
+		//Ray t1, t2;
+		//bool intersectT1, intersectT2;
 		StackNode node;
 /*
 		rayInit(&t1, ray->orig, ray->dir, currentNode.tmin, currentNode.tmax);
@@ -514,6 +517,9 @@ bool intersectKdTree(Scene *scene, KdTree *tree, Ray *ray, Intersection *interse
     		case  PLANE:
     			hasIntersection |= intersectPlane(ray, intersection, obj);
     			break;
+			case KDFREE_SPHERE:
+				hasIntersection |= intersectSphere(ray, intersection, obj);
+				break;
     		default:
     			//never used
     			perror("intersectKdTree : unhandled object found");

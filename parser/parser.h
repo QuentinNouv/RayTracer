@@ -18,7 +18,7 @@ typedef struct{
 	unsigned int height;
 } Model;
 
-
+std::vector<std::vector<vec3>*> *ppmTab(const std::string &fname, unsigned &s_width, unsigned &s_height);
 Model *objParse(std::string filename, std::string texturename);
 
 

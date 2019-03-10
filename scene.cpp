@@ -13,6 +13,16 @@ Object *initSphere(point3 center, float radius, Material mat) {
     return ret;
 }
 
+Object *initKdFree_Sphere(point3 center, float radius, Material mat) {
+    Object *ret;
+    ret = (Object *)malloc(sizeof(Object));
+    ret->geom.type = KDFREE_SPHERE;
+    ret->geom.sphere.center = center;
+    ret->geom.sphere.radius = radius;
+    memcpy(&(ret->mat), &mat, sizeof(Material));
+    return ret;
+}
+
 Object *initPlane(vec3 normal, float d, Material mat) {
     Object *ret;
     ret = (Object *)malloc(sizeof(Object));

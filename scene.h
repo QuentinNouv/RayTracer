@@ -10,7 +10,7 @@ typedef struct object_s Object;
 typedef struct light_s Light;
 typedef struct camera_s Camera;
 
-enum Etype {SPHERE=1, PLANE, TRIANGLE};
+enum Etype {SPHERE=1, PLANE, TRIANGLE, KDFREE_SPHERE};
 
 typedef struct {
 	vec2 coordA;
@@ -32,6 +32,7 @@ typedef struct material_s {
 
 //! create a new sphere structure
 Object* initSphere(point3 center, float radius, Material mat);
+Object* initKdFree_Sphere(point3 center, float radius, Material mat);
 Object* initPlane(vec3 normal, float d, Material mat);
 Object* initTriangle(point3 a, point3 b, point3 c, Material mat);
 
