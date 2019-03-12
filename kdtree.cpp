@@ -115,9 +115,9 @@ bool intersectSphereAabb(vec3 sphereCenter, float sphereRadius, vec3 aabbMin, ve
 
 //implementation of http://fileadmin.cs.lth.se/cs/Personal/Tomas_Akenine-Moller/code/tribox_tam.pdf
 
-inline bool axisTestX01(float a, float b, float fa, float fb, const glm::vec3 &v0,
-						const glm::vec3 &v2, const glm::vec3 &boxhalfsize, float &rad, float &min,
-						float &max, float &p0, float &p2) {
+inline bool axisX(float a, float b, float fa, float fb, const glm::vec3 &v0,
+				  const glm::vec3 &v2, const glm::vec3 &boxhalfsize, float &rad, float &min,
+				  float &max, float &p0, float &p2) {
 	p0 = a * v0.y - b * v0.z;
 	p2 = a * v2.y - b * v2.z;
 	if (p0 < p2) {
@@ -128,33 +128,14 @@ inline bool axisTestX01(float a, float b, float fa, float fb, const glm::vec3 &v
 		max = p0;
 	}
 	rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
-	if (min >= rad || max <= -rad)
-		return false;
-	return true;
-}
-inline bool axisTestX2(float a, float b, float fa, float fb, const glm::vec3 &v0,
-					   const glm::vec3 &v1, const glm::vec3 &boxhalfsize, float &rad, float &min,
-					   float &max, float &p0, float &p1) {
-	p0 = a * v0.y - b * v0.z;
-	p1 = a * v1.y - b * v1.z;
-	if (p0 < p1) {
-		min = p0;
-		max = p1;
-	} else {
-		min = p1;
-		max = p0;
-	}
-	rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
-	if (min >= rad || max <= -rad)
-		return false;
-	return true;
+	return !(min >= rad || max <= -rad);
 }
 
 /*======================== Y-tests ========================*/
 
-inline bool axisTestY02(float a, float b, float fa, float fb, const glm::vec3 &v0,
-						const glm::vec3 &v2, const glm::vec3 &boxhalfsize, float &rad, float &min,
-						float &max, float &p0, float &p2) {
+inline bool axixY(float a, float b, float fa, float fb, const glm::vec3 &v0,
+				  const glm::vec3 &v2, const glm::vec3 &boxhalfsize, float &rad, float &min,
+				  float &max, float &p0, float &p2) {
 	p0 = -a * v0.x + b * v0.z;
 	p2 = -a * v2.x + b * v2.z;
 	if (p0 < p2) {
@@ -165,23 +146,19 @@ inline bool axisTestY02(float a, float b, float fa, float fb, const glm::vec3 &v
 		max = p0;
 	}
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.z;
-	if (min >= rad || max <= -rad)
-		return false;
-	return true;
+	return !(min >= rad || max <= -rad);
 }
 /*======================== Z-tests ========================*/
-inline bool axisTestZ12(float a, float b, float fa, float fb, const glm::vec3 &v2,
-						const glm::vec3 &boxhalfsize, float &rad, float min, float max, float &p2) {
+inline bool axisZ(float a, float b, float fa, float fb, const glm::vec3 &v2,
+				  const glm::vec3 &boxhalfsize, float &rad, float min, float max, float &p2) {
 	p2 = a * v2.x - b * v2.y;
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
-	if (min >= rad || max <= -rad)
-		return false;
-	return true;
+	return !(min >= rad || max <= -rad);
 }
 
-inline bool axisTestZ0(float a, float b, float fa, float fb, const glm::vec3 &v0,
-					   const glm::vec3 &v1, const glm::vec3 &boxhalfsize, float &rad, float &min,
-					   float &max, float &p0, float &p1) {
+inline bool axisZbis(float a, float b, float fa, float fb, const glm::vec3 &v0,
+					 const glm::vec3 &v1, const glm::vec3 &boxhalfsize, float &rad, float &min,
+					 float &max, float &p0, float &p1) {
 	p0 = a * v0.x - b * v0.y;
 	p1 = a * v1.x - b * v1.y;
 	if (p0 < p1) {
@@ -192,9 +169,7 @@ inline bool axisTestZ0(float a, float b, float fa, float fb, const glm::vec3 &v0
 		max = p0;
 	}
 	rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
-	if (min >= rad || max <= -rad)
-		return false;
-	return true;
+	return !(min >= rad || max <= -rad);
 }
 
 inline void findMinMax(float x0, float x1, float x2, float &min, float &max) {
@@ -250,13 +225,13 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fey = fabsf(edge0.y);
 	fez = fabsf(edge0.z);
 
-	if (!axisTestX01(edge0.z, edge0.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
+	if (!axisX(edge0.z, edge0.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
 		return false;
 	}
-	if (!axisTestY02(edge0.z, edge0.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
+	if (!axixY(edge0.z, edge0.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
 		return false;
 	}
-	if (!axisTestZ0(edge0.y, edge0.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
+	if (!axisZbis(edge0.y, edge0.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
 		return false;
 	}
 
@@ -264,13 +239,13 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fey = fabsf(edge1.y);
 	fez = fabsf(edge1.z);
 
-	if (!axisTestX01(edge1.z, edge1.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
+	if (!axisX(edge1.z, edge1.y, fez, fey, v0, v2, halfSize, rad, min, max, p0, p2)) {
 		return false;
 	}
-	if (!axisTestY02(edge1.z, edge1.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
+	if (!axixY(edge1.z, edge1.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
 		return false;
 	}
-	if (!axisTestZ0(edge1.y, edge1.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
+	if (!axisZbis(edge1.y, edge1.x, fez, fex, v0, v1, halfSize, rad, min, max, p0, p1)) {
 		return false;
 	}
 
@@ -278,13 +253,13 @@ bool intersectTriangleAabb(vec3 aabbMin, vec3 aabbMax, vec3 a, vec3 b, vec3 c){
 	fey = fabsf(edge2.y);
 	fez = fabsf(edge2.z);
 
-	if (!axisTestX2(edge2.z, edge2.y, fez, fey, v0, v1, halfSize, rad, min, max, p0, p1)) {
+	if (!axisX(edge2.z, edge2.y, fez, fey, v0, v1, halfSize, rad, min, max, p0, p1)) {
 		return false;
 	}
-	if (!axisTestY02(edge2.z, edge2.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
+	if (!axixY(edge2.z, edge2.x, fez, fex, v0, v2, halfSize, rad, min, max, p0, p2)) {
 		return false;
 	}
-	if (!axisTestZ12(edge2.y, edge2.x, fey, fex, v2, halfSize, rad, min, max, p2)) {
+	if (!axisZ(edge2.y, edge2.x, fey, fex, v2, halfSize, rad, min, max, p2)) {
 		return false;
 	}
 
@@ -381,7 +356,7 @@ void subdivide(Scene *scene, KdTree *tree, KdTreeNode *node) {
 }
 
 // from http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-7-intersecting-simple-shapes/ray-box-intersection/
-static bool intersectAabb(Ray *theRay,  vec3 min, vec3 max) {
+bool intersectAabb(Ray *theRay,  vec3 min, vec3 max) {
     float tmin, tmax, tymin, tymax, tzmin, tzmax;
     vec3 bounds[2] = {min, max};
     tmin = (bounds[theRay->sign[0]].x - theRay->orig.x) * theRay->invdir.x;
